@@ -1,5 +1,6 @@
 package com.solvd.qa.pages;
 
+import com.solvd.qa.dataprovider.ConfigFileReader;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -28,7 +29,7 @@ public class ComparePage extends AbstractPage {
 
     public ComparePage(WebDriver driver) {
         super(driver);
-        expectedPageUrl = "https://5element.by/compare/";
+        expectedPageUrl = configFileReader.getValueByKey("url") + "/compare/";
         PageFactory.initElements(driver, this);
     }
 
@@ -51,9 +52,10 @@ public class ComparePage extends AbstractPage {
         WaitUtils.pause(1000);
         salesRadioButton.click();
     }
+
     public List<String> getBrandsRowBrandNames() {
         List<String> brandsRowBrandNames = new ArrayList<>();
-        for(int i = 0; i < brandsRow.size(); i++){
+        for (int i = 0; i < brandsRow.size(); i++) {
             brandsRowBrandNames.add(brandsRow.get(i).getText().toLowerCase());
 
         }

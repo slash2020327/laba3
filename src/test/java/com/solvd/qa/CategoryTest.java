@@ -1,6 +1,7 @@
 package com.solvd.qa;
 
 import com.solvd.qa.pages.CatalogPage;
+import com.solvd.qa.pages.HomePage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -9,7 +10,9 @@ public class CategoryTest extends AbstractTest {
 
     @Test
     public void verifyCategoryPage() {
-        driver.get("https://5element.by/catalog");
+        HomePage homePage = new HomePage(driver);
+        Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
+        homePage.clickCatalogButton();
         CatalogPage catalogPage = new CatalogPage(driver);
         Assert.assertTrue(catalogPage.isPageOpened(), "Catalog page is not opened");
         catalogPage.getCookiePopUp().clickAcceptCookieButton();

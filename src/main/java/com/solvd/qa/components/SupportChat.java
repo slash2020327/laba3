@@ -9,18 +9,18 @@ import org.openqa.selenium.support.ui.Wait;
 
 import java.time.Duration;
 
-public class SupportChatDiv extends AbstractComponent {
+public class SupportChat extends AbstractComponent {
 
-    private By supportChatDivPath = By.xpath("//jdiv[@class='hoverl_bdff']");
+    private By supportChatDivPath = By.xpath("//jdiv[@class='hoverl_bdff' or @class='hoverl_b936']");
 
-    public SupportChatDiv(WebDriver driver) {
+    public SupportChat(WebDriver driver) {
         super(driver);
     }
 
-    public void deleteSupportChatDiv() {
+    public void deleteSupportChatFromPage() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         Wait wait = new FluentWait(driver)
-                .withTimeout(Duration.ofSeconds(5))
+                .withTimeout(Duration.ofSeconds(10))
                 .pollingEvery(Duration.ofSeconds(1))
                 .ignoring(Exception.class);
         wait.until(ExpectedConditions.presenceOfElementLocated(supportChatDivPath));

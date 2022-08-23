@@ -8,6 +8,8 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -16,32 +18,36 @@ public class AbstractTest {
 
     @BeforeMethod
     public void setup() {
-        System.setProperty("webdriver.chrome.driver", "/Users/sbedulin/Downloads/chromedriver");
         ConfigFileReader configFileReader = new ConfigFileReader();
+        System.setProperty(configFileReader.getValueByKey("webdriver.name"), configFileReader.getValueByKey("driverPath"));
         ChromeOptions options = new ChromeOptions();
         options.setPageLoadStrategy(PageLoadStrategy.EAGER);
-        options.addArguments("--window-size=1920,1080");
-        options.setCapability("browserVersion", "91.0");
+        options.addArguments(configFileReader.getValueByKey("windowSize"));
+        options.setCapability("browserVersion", configFileReader.getValueByKey("browserVersion"));
         options.setCapability("selenoid:options", new HashMap<String, Object>() {{
             /* How to add test badge */
-            put("name", "Test badge...");
+            put("name", configFileReader.getValueByKey("selenoidOptions.name"));
             /* How to set session timeout */
-            put("sessionTimeout", "15m");
+            put("sessionTimeout", configFileReader.getValueByKey("selenoidOptions.sessionTimeout"));
             /* How to set timezone */
             put("env", new ArrayList<String>() {{
-                add("TZ=UTC");
+                add(configFileReader.getValueByKey("selenoidOptions.timezone"));
             }});
             /* How to add "trash" button */
             put("labels", new HashMap<String, Object>() {{
                 put("manual", "true");
             }});
             /* How to enable video recording */
-            put("enableVideo", false);
-            put("enableVNC", true);
+            put("enableVideo", Boolean.valueOf(configFileReader.getValueByKey("selenoidOptions.enableVideo")));
+            put("enableVNC", Boolean.valueOf(configFileReader.getValueByKey("selenoidOptions.enableVNC")));
         }});
-        //driver = new RemoteWebDriver(new URL(configFileReader.getRemoteUrl()), options);
-        driver = new ChromeDriver(options);
-        driver.get(configFileReader.getURL());
+        try {
+            driver = new RemoteWebDriver(new URL(configFileReader.getValueByKey("remoteUrl")), options);
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        }
+        //driver = new ChromeDriver(options);
+        driver.get(configFileReader.getValueByKey("url"));
     }
 
     @AfterMethod

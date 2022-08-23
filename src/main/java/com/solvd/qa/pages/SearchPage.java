@@ -23,7 +23,7 @@ public class SearchPage extends AbstractPage {
 
     public SearchPage(WebDriver driver) {
         super(driver);
-        expectedPageUrl = "https://5element.by/search/";
+        expectedPageUrl = configFileReader.getValueByKey("url") + "/search/";
         PageFactory.initElements(driver, this);
     }
 

@@ -22,7 +22,7 @@ public class CompareTest extends AbstractTest {
         WaitUtils.pause(1000);
         Assert.assertTrue(searchPage.isPageOpened(), "Search page is not opened");
         searchPage.clickCheckBoxByName("Смартфоны");
-        searchPage.getSupportChatDiv().deleteSupportChatDiv();
+        searchPage.getSupportChatDiv().deleteSupportChatFromPage();
         searchPage.clickOnProductCardCompareButtonByName("Смартфон Samsung Galaxy A32 4GB/128GB (фиолетовый)");
         searchPage.clickOnProductCardCompareButtonByName("Смартфон Samsung Galaxy A13 SM-A135FLBKCAU 4GB/128GB (голубой)");
         searchPage.clickOnProductCardCompareButtonByName("Смартфон Samsung Galaxy A33 5G SM-A336BZWGSK 6GB/128GB (белый)");

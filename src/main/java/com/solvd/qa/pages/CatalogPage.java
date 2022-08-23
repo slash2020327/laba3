@@ -1,5 +1,6 @@
 package com.solvd.qa.pages;
 
+import com.solvd.qa.dataprovider.ConfigFileReader;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,27 +15,32 @@ public class CatalogPage extends AbstractPage {
 
     public CatalogPage(WebDriver driver) {
         super(driver);
-        expectedPageUrl = "https://5element.by/catalog/";
+        expectedPageUrl = configFileReader.getValueByKey("url") + "/catalog/";
         PageFactory.initElements(driver, this);
     }
+
     private List<WebElement> getCategories() {
         return categories;
     }
+
     private WebElement getCategoryByName(String name) {
-        for(WebElement category : categories){
-            if(category.getText().equals(name)){
+        for (WebElement category : categories) {
+            if (category.getText().equals(name)) {
                 return category;
             }
         }
         return null;
     }
-    private String getCategoryLink(WebElement category){
+
+    private String getCategoryLink(WebElement category) {
         return category.getAttribute("href");
     }
-    public String getCategoryLinkByName(String name){
+
+    public String getCategoryLinkByName(String name) {
         return getCategoryLink(getCategoryByName(name));
     }
-    public void clickOnCategoryByName(String name){
+
+    public void clickOnCategoryByName(String name) {
         getCategoryByName(name).click();
     }
 

@@ -2,7 +2,8 @@ package com.solvd.qa.pages;
 
 import com.solvd.qa.components.CookiesPopUp;
 import com.solvd.qa.components.HeaderMenu;
-import com.solvd.qa.components.SupportChatDiv;
+import com.solvd.qa.components.SupportChat;
+import com.solvd.qa.dataprovider.ConfigFileReader;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -19,6 +20,8 @@ public abstract class AbstractPage {
     private By productCardsLocator = By.xpath("//div[@data-product_id]");
     private By compareButtonLocator = By.xpath(".//div[@class='c-nav']/a[@aria-label='compare']");
     private By addToCartButtonLocator = By.xpath(".//button[@data-product_id and @data-product_name]");
+
+    protected ConfigFileReader configFileReader = new ConfigFileReader();
 
     protected WebDriver driver;
     protected List<WebElement> productCards;
@@ -67,7 +70,6 @@ public abstract class AbstractPage {
     }
 
     public boolean isPageOpened() {
-        //return expectedPageUrl.equals(driver.getCurrentUrl().split("\\?")[0]);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[@class='section section--first' or @class='section section--first section--last']")));
         return driver.getCurrentUrl().contains(expectedPageUrl);
@@ -81,11 +83,10 @@ public abstract class AbstractPage {
         return new CookiesPopUp(driver);
     }
 
-    public SupportChatDiv getSupportChatDiv() {
-        return new SupportChatDiv(driver);
+    public SupportChat getSupportChatDiv() {
+        return new SupportChat(driver);
     }
-
-
+    
     public void clickAddToCartButtonByName(String name) {
         WaitUtils.pause(1000);
         getProductCardByName(name).findElement(addToCartButtonLocator).click();

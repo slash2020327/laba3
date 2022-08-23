@@ -1,5 +1,8 @@
 package com.solvd.qa.dataprovider;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -7,37 +10,30 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class ConfigFileReader {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ConfigFileReader.class);
     private Properties properties;
-    private final String propertyFilePath="src/main/resources/config.properties";
+    private static final String PROPERTY_FILE_PATH ="src/main/resources/config.properties";
     public ConfigFileReader() {
         BufferedReader reader;
         try {
-            reader = new BufferedReader(new FileReader(propertyFilePath));
+            reader = new BufferedReader(new FileReader(PROPERTY_FILE_PATH));
             properties = new Properties();
             try {
                 properties.load(reader);
                 reader.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                LOGGER.error("I/O exception has occurred");
             }
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            throw new RuntimeException("Configuration.properties not found at " + propertyFilePath);
+            LOGGER.error("File not found");
+            throw new RuntimeException("Configuration.properties not found at " + PROPERTY_FILE_PATH);
         }
     }
-    public String getURL(){
-        String url = properties.getProperty("url");
-        if(url != null) return url;
-        else throw new RuntimeException("driverPath not specified in the config.properties file.");
+
+    public String getValueByKey(String key){
+        String value = properties.getProperty(key);
+        if(value != null) return value;
+        else throw new RuntimeException("Such property is not specified in the config.properties file.");
     }
-    public String getDriverPath(){
-        String driverPath = properties.getProperty("driverPath");
-        if(driverPath != null) return driverPath;
-        else throw new RuntimeException("driverPath not specified in the config.properties file.");
-    }
-    public String getRemoteUrl(){
-        String remoteUrl = properties.getProperty("remoteUrl");
-        if(remoteUrl != null) return remoteUrl;
-        else throw new RuntimeException("driverPath not specified in the config.properties file.");
-    }
+
 }
