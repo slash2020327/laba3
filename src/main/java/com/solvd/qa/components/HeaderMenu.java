@@ -10,8 +10,10 @@ import utils.WaitUtils;
 public class HeaderMenu extends AbstractComponent {
     @FindBy(xpath = "//*[@placeholder='Поиск товара']")
     private WebElement searchField;
+
     @FindBy(xpath = "//input[@type='text' and @placeholder='Поиск товара' and @maxlength='90' ]")
     private WebElement hiddenSearchField;
+
     @FindBy(xpath = "//div[text()='Сравнение']/ancestor::div[@class='h-added-drop h-drop js-drop-select']")
     private WebElement compareButton;
 

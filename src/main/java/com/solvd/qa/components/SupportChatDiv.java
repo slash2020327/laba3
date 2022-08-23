@@ -16,7 +16,8 @@ public class SupportChatDiv extends AbstractComponent {
     public SupportChatDiv(WebDriver driver) {
         super(driver);
     }
-    public void deleteSupportChatDiv(){
+
+    public void deleteSupportChatDiv() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         Wait wait = new FluentWait(driver)
                 .withTimeout(Duration.ofSeconds(5))
