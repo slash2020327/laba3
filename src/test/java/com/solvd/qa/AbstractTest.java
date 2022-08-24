@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -24,37 +25,36 @@ public class AbstractTest {
     @BeforeMethod
     public void setup() {
 
-        ConfigFileReader configFileReader = new ConfigFileReader();
-        System.setProperty(configFileReader.getProperties().get("webdriver.name"), configFileReader.getProperties().get("driverPath"));
+        System.setProperty(ConfigFileReader.getValueByKey("webdriver.name"), ConfigFileReader.getValueByKey("driverPath"));
         ChromeOptions options = new ChromeOptions();
         options.setPageLoadStrategy(PageLoadStrategy.EAGER);
-        options.addArguments(configFileReader.getProperties().get("windowSize"));
-        options.setCapability("browserVersion", configFileReader.getProperties().get("browserVersion"));
+        options.addArguments(ConfigFileReader.getValueByKey("windowSize"));
+        options.setCapability("browserVersion", ConfigFileReader.getValueByKey("browserVersion"));
         options.setCapability("selenoid:options", new HashMap<String, Object>() {{
             /* How to add test badge */
-            put("name", configFileReader.getProperties().get("selenoidOptions.name"));
+            put("name", ConfigFileReader.getValueByKey("selenoidOptions.name"));
             /* How to set session timeout */
-            put("sessionTimeout", configFileReader.getProperties().get("selenoidOptions.sessionTimeout"));
+            put("sessionTimeout", ConfigFileReader.getValueByKey("selenoidOptions.sessionTimeout"));
             /* How to set timezone */
             put("env", new ArrayList<String>() {{
-                add(configFileReader.getProperties().get("selenoidOptions.timezone"));
+                add(ConfigFileReader.getValueByKey("selenoidOptions.timezone"));
             }});
             /* How to add "trash" button */
             put("labels", new HashMap<String, Object>() {{
                 put("manual", "true");
             }});
             /* How to enable video recording */
-            put("enableVideo", Boolean.valueOf(configFileReader.getProperties().get("selenoidOptions.enableVideo")));
-            put("enableVNC", Boolean.valueOf(configFileReader.getProperties().get("selenoidOptions.enableVNC")));
+            put("enableVideo", Boolean.valueOf(ConfigFileReader.getValueByKey("selenoidOptions.enableVideo")));
+            put("enableVNC", Boolean.valueOf(ConfigFileReader.getValueByKey("selenoidOptions.enableVNC")));
         }});
         try {
-            driver = new RemoteWebDriver(new URL(configFileReader.getProperties().get("remoteUrl")), options);
+            driver = new RemoteWebDriver(new URL(ConfigFileReader.getValueByKey("remoteUrl")), options);
         } catch (MalformedURLException e) {
-            LOGGER.error("Could not access remoteWebDriver by URL " + configFileReader.getProperties().get("remoteUrl"));
+            LOGGER.error("Could not access remoteWebDriver by URL " + ConfigFileReader.getValueByKey("remoteUrl"));
             throw new RuntimeException("Could not access remoteWebDriver by URL", e);
         }
         driver = new ChromeDriver(options);
-        driver.get(configFileReader.getProperties().get("url"));
+        driver.get(ConfigFileReader.getValueByKey("url"));
     }
 
     @AfterMethod

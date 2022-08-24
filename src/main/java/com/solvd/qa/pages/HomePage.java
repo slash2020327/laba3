@@ -1,6 +1,7 @@
 package com.solvd.qa.pages;
 
 import com.solvd.qa.components.HeaderMenu;
+import com.solvd.qa.dataprovider.ConfigFileReader;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,7 +14,7 @@ public class HomePage extends AbstractPage {
 
     public HomePage(WebDriver driver) {
         super(driver);
-        expectedPageUrl = configFileReader.getValueByKey("url") + "/";
+        expectedPageUrl = ConfigFileReader.getValueByKey("url") + "/";
         PageFactory.initElements(driver, this);
     }
 
@@ -21,7 +22,7 @@ public class HomePage extends AbstractPage {
         return new HeaderMenu(driver);
     }
 
-    public void clickCatalogButton(){
+    public void clickCatalogButton() {
         catalogButton.click();
     }
 }

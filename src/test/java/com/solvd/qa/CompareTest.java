@@ -8,7 +8,14 @@ import org.testng.annotations.Test;
 import utils.WaitUtils;
 
 public class CompareTest extends AbstractTest {
+
     private static final String BRAND_NAME = "Samsung";
+
+    private static final String FIRST_ITEM_NAME = "Смартфон Samsung Galaxy A32 4GB/128GB (фиолетовый)";
+
+    private static final String SECOND_ITEM_NAME = "Смартфон Samsung Galaxy A13 SM-A135FLBKCAU 4GB/128GB (голубой)";
+
+    private static final String THIRD_ITEM_NAME = "Смартфон Samsung Galaxy A33 5G SM-A336BZWGSK 6GB/128GB (белый)";
 
     @Test()
     public void compareSameBrandNames() {
@@ -22,9 +29,9 @@ public class CompareTest extends AbstractTest {
         Assert.assertTrue(searchPage.isPageOpened(), "Search page is not opened");
         searchPage.clickCheckBoxByName("Смартфоны");
         searchPage.getSupportChatDiv().deleteSupportChatFromPage();
-        searchPage.clickOnProductCardCompareButtonByName("Смартфон Samsung Galaxy A32 4GB/128GB (фиолетовый)");
-        searchPage.clickOnProductCardCompareButtonByName("Смартфон Samsung Galaxy A13 SM-A135FLBKCAU 4GB/128GB (голубой)");
-        searchPage.clickOnProductCardCompareButtonByName("Смартфон Samsung Galaxy A33 5G SM-A336BZWGSK 6GB/128GB (белый)");
+        searchPage.clickOnProductCardCompareButtonByName(FIRST_ITEM_NAME);
+        searchPage.clickOnProductCardCompareButtonByName(SECOND_ITEM_NAME);
+        searchPage.clickOnProductCardCompareButtonByName(THIRD_ITEM_NAME);
         searchPage.getHeaderMenu().clickCompareButton();
         searchPage.getHeaderMenu().getCompareDropdown().clickOnGoToCompareButton();
         ComparePage comparePage = new ComparePage(driver);

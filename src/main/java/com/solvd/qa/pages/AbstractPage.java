@@ -3,7 +3,6 @@ package com.solvd.qa.pages;
 import com.solvd.qa.components.CookiesPopUp;
 import com.solvd.qa.components.HeaderMenu;
 import com.solvd.qa.components.SupportChat;
-import com.solvd.qa.dataprovider.ConfigFileReader;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.slf4j.Logger;
@@ -16,13 +15,19 @@ import java.util.NoSuchElementException;
 public abstract class AbstractPage {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AbstractPage.class);
+
     private static final int MAX_RETRY_ATTEMPTS = 10;
+
     private By productCardsLocator = By.xpath("//div[@data-product_id]");
+
     private By compareButtonLocator = By.xpath(".//div[@class='c-nav']/a[@aria-label='compare']");
+
     private By addToCartButtonLocator = By.xpath(".//button[@data-product_id and @data-product_name]");
-    protected ConfigFileReader configFileReader = new ConfigFileReader();
+
     protected WebDriver driver;
+
     protected List<WebElement> productCards;
+
     protected String expectedPageUrl;
 
     public AbstractPage(WebDriver driver) {
@@ -54,8 +59,8 @@ public abstract class AbstractPage {
         int attempts = MAX_RETRY_ATTEMPTS;
         while (attempts >= 0) {
             if (attempts == 0) {
-                LOGGER.error(String.format("No elements was found after %s attempts", MAX_RETRY_ATTEMPTS));
-                throw new NoSuchElementException("No elements was found");
+                LOGGER.error(String.format("No compareButton was found after %s attempts", MAX_RETRY_ATTEMPTS));
+                throw new NoSuchElementException("No compareButton was found");
             }
             try {
                 clickOnProductCardCompareButton(getProductCardByName(name));
@@ -68,7 +73,7 @@ public abstract class AbstractPage {
         }
     }
 
-    public void openPage(){
+    public void openPage() {
         driver.get(expectedPageUrl);
     }
 

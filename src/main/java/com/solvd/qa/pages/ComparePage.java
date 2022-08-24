@@ -29,7 +29,7 @@ public class ComparePage extends AbstractPage {
 
     public ComparePage(WebDriver driver) {
         super(driver);
-        expectedPageUrl = configFileReader.getValueByKey("url") + "/compare/";
+        expectedPageUrl = ConfigFileReader.getValueByKey("url") + "/compare/";
         PageFactory.initElements(driver, this);
     }
 

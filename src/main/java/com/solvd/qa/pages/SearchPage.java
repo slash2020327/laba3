@@ -1,5 +1,6 @@
 package com.solvd.qa.pages;
 
+import com.solvd.qa.dataprovider.ConfigFileReader;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -23,7 +24,7 @@ public class SearchPage extends AbstractPage {
 
     public SearchPage(WebDriver driver) {
         super(driver);
-        expectedPageUrl = configFileReader.getValueByKey("url") + "/search/";
+        expectedPageUrl = ConfigFileReader.getValueByKey("url") + "/search/";
         PageFactory.initElements(driver, this);
     }
 
