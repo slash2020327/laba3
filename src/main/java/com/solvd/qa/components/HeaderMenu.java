@@ -34,7 +34,7 @@ public class HeaderMenu extends AbstractComponent {
     }
 
     public HeaderMenu clickCompareButton() {
-        WaitUtils.pause(1000);
+        WaitUtils.pause(1);
         compareButton.click();
         return new HeaderMenu(driver);
     }

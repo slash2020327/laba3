@@ -13,7 +13,7 @@ public class HomePage extends AbstractPage {
 
     public HomePage(WebDriver driver) {
         super(driver);
-        expectedPageUrl = configFileReader.getValueByKey("url");
+        expectedPageUrl = configFileReader.getValueByKey("url") + "/";
         PageFactory.initElements(driver, this);
     }
 

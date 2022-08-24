@@ -8,6 +8,5 @@ public class AbstractComponent {
 
     public AbstractComponent(WebDriver driver) {
         this.driver = driver;
-
     }
 }

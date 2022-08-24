@@ -1,6 +1,5 @@
 package com.solvd.qa.components;
 
-import com.solvd.qa.pages.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -18,7 +17,7 @@ public class CompareDropdown extends AbstractComponent {
     }
 
     public CompareDropdown clickOnGoToCompareButton() {
-        WaitUtils.pause(1000);
+        WaitUtils.pause(1);
         goToComparePageButton.click();
         return new CompareDropdown(driver);
     }

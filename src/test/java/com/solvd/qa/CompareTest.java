@@ -12,14 +12,13 @@ public class CompareTest extends AbstractTest {
 
     @Test()
     public void compareSameBrandNames() {
-
         HomePage homePage = new HomePage(driver);
         Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
         homePage.getCookiePopUp().clickAcceptCookieButton();
         homePage.getHeaderMenu().clickOnSearchField();
         homePage.getHeaderMenu().searchWith(BRAND_NAME);
         SearchPage searchPage = new SearchPage(driver);
-        WaitUtils.pause(1000);
+        WaitUtils.pause(1);
         Assert.assertTrue(searchPage.isPageOpened(), "Search page is not opened");
         searchPage.clickCheckBoxByName("Смартфоны");
         searchPage.getSupportChatDiv().deleteSupportChatFromPage();

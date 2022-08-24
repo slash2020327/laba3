@@ -34,22 +34,22 @@ public class ComparePage extends AbstractPage {
     }
 
     public void clickOnOnlyDifferencesRadioButton() {
-        WaitUtils.pause(1000);
+        WaitUtils.pause(1);
         onlyDifferencesRadioButton.click();
     }
 
     public void clickOnOnlySimilarRadioButton() {
-        WaitUtils.pause(1000);
+        WaitUtils.pause(1);
         onlySimilarRadioButton.click();
     }
 
     public void clickOnAllCharacteristicsRadioButton() {
-        WaitUtils.pause(1000);
+        WaitUtils.pause(1);
         allCharacteristicsRadioButton.click();
     }
 
     public void clickOnSalesRadioButton() {
-        WaitUtils.pause(1000);
+        WaitUtils.pause(1);
         salesRadioButton.click();
     }
 
@@ -60,6 +60,11 @@ public class ComparePage extends AbstractPage {
 
         }
         return brandsRowBrandNames;
+    }
+
+    @Override
+    public boolean isPageOpened() {
+        return driver.getCurrentUrl().split("\\%")[0].equals(expectedPageUrl);
     }
 
 

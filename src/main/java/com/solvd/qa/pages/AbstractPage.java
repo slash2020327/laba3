@@ -6,23 +6,21 @@ import com.solvd.qa.components.SupportChat;
 import com.solvd.qa.dataprovider.ConfigFileReader;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import utils.WaitUtils;
 
-
-import java.time.Duration;
 import java.util.List;
 import java.util.NoSuchElementException;
 
 public abstract class AbstractPage {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(AbstractPage.class);
+    private static final int MAX_RETRY_ATTEMPTS = 10;
     private By productCardsLocator = By.xpath("//div[@data-product_id]");
     private By compareButtonLocator = By.xpath(".//div[@class='c-nav']/a[@aria-label='compare']");
     private By addToCartButtonLocator = By.xpath(".//button[@data-product_id and @data-product_name]");
-
     protected ConfigFileReader configFileReader = new ConfigFileReader();
-
     protected WebDriver driver;
     protected List<WebElement> productCards;
     protected String expectedPageUrl;
@@ -37,7 +35,7 @@ public abstract class AbstractPage {
     }
 
     private WebElement getProductCardByName(String name) {
-        WaitUtils.pause(500);
+        WaitUtils.pause(1);
         productCards = getProductCards();
         for (WebElement card : productCards) {
             if (card.getText().contains(name)) {
@@ -48,15 +46,16 @@ public abstract class AbstractPage {
     }
 
     private void clickOnProductCardCompareButton(WebElement productCard) {
-        WaitUtils.pause(500);
+        WaitUtils.pause(1);
         productCard.findElement(compareButtonLocator).click();
     }
 
     public void clickOnProductCardCompareButtonByName(String name) {
-        int attempts = 10;
+        int attempts = MAX_RETRY_ATTEMPTS;
         while (attempts >= 0) {
             if (attempts == 0) {
-                throw new NoSuchElementException();
+                LOGGER.error(String.format("No elements was found after %s attempts", MAX_RETRY_ATTEMPTS));
+                throw new NoSuchElementException("No elements was found");
             }
             try {
                 clickOnProductCardCompareButton(getProductCardByName(name));
@@ -69,10 +68,12 @@ public abstract class AbstractPage {
         }
     }
 
+    public void openPage(){
+        driver.get(expectedPageUrl);
+    }
+
     public boolean isPageOpened() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[@class='section section--first' or @class='section section--first section--last']")));
-        return driver.getCurrentUrl().contains(expectedPageUrl);
+        return driver.getCurrentUrl().split("\\?")[0].equals(expectedPageUrl);
     }
 
     public HeaderMenu getHeaderMenu() {
@@ -86,9 +87,9 @@ public abstract class AbstractPage {
     public SupportChat getSupportChatDiv() {
         return new SupportChat(driver);
     }
-    
+
     public void clickAddToCartButtonByName(String name) {
-        WaitUtils.pause(1000);
+        WaitUtils.pause(1);
         getProductCardByName(name).findElement(addToCartButtonLocator).click();
     }
 
