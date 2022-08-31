@@ -17,14 +17,14 @@ public class ComparePageTest extends BaseTest {
         searchPage.assertPageOpened();
         searchPage.clickCheckBoxByName(R.TESTDATA.get("category_name"));
         String[] productNames = R.TESTDATA.get("product_names").split("\\s*,\\s*");
-        for (String productName: productNames) {
+        for (String productName : productNames) {
             searchPage.getProductByName(productName).addToCompare();
         }
         searchPage.getHeaderMenu().openCompareDropDown();
         searchPage.getHeaderMenu().getCompareDropDown().openComparePage();
         ComparePage comparePage = new ComparePage(getDriver());
         comparePage.assertPageOpened();
-        for (String brandName: comparePage.getBrandsRowBrandNames()) {
+        for (String brandName : comparePage.getBrandsRowBrandNames()) {
             Assert.assertEquals(R.TESTDATA.get("brand_name").toLowerCase(), brandName.toLowerCase());
         }
     }

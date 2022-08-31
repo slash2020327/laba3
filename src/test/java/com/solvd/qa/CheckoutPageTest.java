@@ -8,10 +8,10 @@ import com.solvd.qa.utils.JavaScriptUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class CheckoutPageTest extends BaseTest{
+public class CheckoutPageTest extends BaseTest {
 
     @Test
-    public void verifyCheckoutProcess(){
+    public void verifyCheckoutProcess() {
         HomePage homePage = new HomePage(getDriver());
         homePage.assertPageOpened();
         JavaScriptUtils.scrollDown(getDriver(), 10);

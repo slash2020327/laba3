@@ -19,20 +19,20 @@ public abstract class PageWithProductCards extends BasePage {
         return productCards;
     }
 
-    public ProductCard getProductByName(String name){
+    public ProductCard getProductByName(String name) {
         productCards = getProductCards();
-        for (ProductCard card: productCards) {
-            if(card.getProductName().equals(name)){
+        for (ProductCard card : productCards) {
+            if (card.getProductName().equals(name)) {
                 return card;
             }
         }
         throw new RuntimeException("Unable to find product: " + name);
     }
 
-    public ProductCard getProductByCode(int code){
+    public ProductCard getProductByCode(int code) {
         productCards = getProductCards();
-        for (ProductCard card: productCards) {
-            if(card.getProductCode().getText().contains(String.valueOf(code))){
+        for (ProductCard card : productCards) {
+            if (card.getProductCode().getText().contains(String.valueOf(code))) {
                 return card;
             }
         }

@@ -9,7 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import java.math.BigDecimal;
 import java.util.List;
 
-public class CartPage extends PageWithProductCards{
+public class CartPage extends PageWithProductCards {
 
     @FindBy(xpath = "//div[@class='section-product']//div[@class='c-cost']")
     private List<ExtendedWebElement> prices;

@@ -6,7 +6,7 @@ import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-public class ShopPopUp extends BaseComponent{
+public class ShopPopUp extends BaseComponent {
 
     @FindBy(xpath = "//a[@class='btn btn--block']")
     private ExtendedWebElement chooseShopButton;

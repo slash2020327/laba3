@@ -8,7 +8,7 @@ import org.testng.annotations.BeforeMethod;
 public class BaseTest implements IAbstractTest {
 
     @BeforeMethod
-    public void setup(){
+    public void setup() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");

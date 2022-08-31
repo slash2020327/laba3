@@ -5,7 +5,7 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.PageOpeningStrat
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-public class SearchPage extends PageWithProductCards{
+public class SearchPage extends PageWithProductCards {
 
     @FindBy(xpath = "//div[@class='section-heading__title']")
     private ExtendedWebElement searchResultTitle;

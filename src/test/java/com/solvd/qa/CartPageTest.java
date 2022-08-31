@@ -16,7 +16,7 @@ public class CartPageTest extends BaseTest {
         SearchPage searchPage = new SearchPage(getDriver());
         searchPage.assertPageOpened();
         String[] productCodes = R.TESTDATA.get("product_codes").split("\\s*,\\s*");
-        for(String productCode: productCodes){
+        for (String productCode : productCodes) {
             searchPage.getProductByCode(Integer.parseInt(productCode)).addToCart();
             searchPage.getCartPopUp().backToShopping();
         }
