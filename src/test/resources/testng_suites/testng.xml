@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="/Users/sbedulin/IdeaProjects/archtest/5element/src/test/java">
+        <classes>
+            <class name="com.solvd.qa.CartPageTest">
+                <methods>
+                    <include name="verifyTotalCost"/>
+                </methods>
+            </class>
+            <class name="com.solvd.qa.CategoryPageTest">
+                <methods>
+                    <include name="verifyCategoryPage"/>
+                </methods>
+            </class>
+            <class name="com.solvd.qa.CheckoutPageTest">
+                <methods>
+                    <include name="verifyCheckoutProcess"/>
+                </methods>
+            </class>
+            <class name="com.solvd.qa.ComparePageTest">
+                <methods>
+                    <include name="compareSameBrandNames"/>
+                </methods>
+            </class>
+            <class name="com.solvd.qa.HomePageTest">
+                <methods>
+                    <include name="verifySalesHits"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
