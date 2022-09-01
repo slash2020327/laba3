@@ -7,7 +7,6 @@ import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 public class HeaderMenu extends BaseComponent {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(HeaderMenu.class);
@@ -51,5 +50,4 @@ public class HeaderMenu extends BaseComponent {
     public void openCart() {
         cartButton.click();
     }
-
 }

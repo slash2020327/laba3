@@ -40,6 +40,4 @@ public class HomePage extends PageWithProductCards {
     public List<ProductSlider> getProductSliders() {
         return productSliders;
     }
-
-
 }

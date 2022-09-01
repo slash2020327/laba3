@@ -29,7 +29,6 @@ public class BaseComponent extends AbstractUIObject {
         } finally {
             JavaScriptUtils.showHeader(getDriver());
             JavaScriptUtils.showSupportChat(getDriver());
-
         }
     }
 }

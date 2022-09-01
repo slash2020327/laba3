@@ -25,5 +25,4 @@ public class SearchPage extends PageWithProductCards {
     public void clickCheckBoxByName(String name) {
         checkBox.format(name, name).click();
     }
-
 }

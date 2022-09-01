@@ -38,5 +38,4 @@ public abstract class PageWithProductCards extends BasePage {
         }
         throw new RuntimeException("Unable to find product: " + name);
     }
-
 }

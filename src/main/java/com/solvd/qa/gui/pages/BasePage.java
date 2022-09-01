@@ -45,8 +45,6 @@ public abstract class BasePage extends AbstractPage {
     }
 
     public CartPopUp getCartPopUp() {
-        //TODO Fix
-        pause(1);
         return cartPopUp;
     }
 }

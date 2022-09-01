@@ -56,5 +56,4 @@ public class ProductSlider extends BaseComponent {
         }
         throw new RuntimeException(name + " was not found");
     }
-
 }

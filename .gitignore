@@ -11,3 +11,4 @@
 target/
 .DS_Store
 reports
+src/main/resources/crypto.key

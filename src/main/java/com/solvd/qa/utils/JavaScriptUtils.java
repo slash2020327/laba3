@@ -3,7 +3,6 @@ package com.solvd.qa.utils;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
-
 public class JavaScriptUtils {
 
     public static void hideSupportChat(WebDriver driver) {
@@ -30,6 +29,7 @@ public class JavaScriptUtils {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0,-250);");
     }
+
     public static void scrollDown(WebDriver driver) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0,250);");
@@ -37,19 +37,20 @@ public class JavaScriptUtils {
 
     public static void scrollUp(WebDriver driver, int timesToScroll) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        for(int i = 0; i <= timesToScroll; i++) {
+        for (int i = 0; i <= timesToScroll; i++) {
             js.executeScript("window.scrollBy(0,-250);");
         }
     }
+
     public static void scrollDown(WebDriver driver, int timesToScroll) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        for(int i = 0; i <= 10; i++) {
+        for (int i = 0; i <= timesToScroll; i++) {
             js.executeScript("window.scrollBy(0,250);");
         }
     }
+
     public static void hideNotificationPrompt(WebDriver driver) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("return document.getElementsByClassName('sp-backdrop-info show-prompt')[0].style.visibility = 'hidden';");
     }
-
 }

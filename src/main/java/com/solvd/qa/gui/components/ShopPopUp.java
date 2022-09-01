@@ -19,5 +19,4 @@ public class ShopPopUp extends BaseComponent {
         chooseShopButton.click();
         return new CheckoutPage(getDriver());
     }
-
 }

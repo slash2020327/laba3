@@ -25,7 +25,7 @@ public class ComparePageTest extends BaseTest {
         ComparePage comparePage = new ComparePage(getDriver());
         comparePage.assertPageOpened();
         for (String brandName : comparePage.getBrandsRowBrandNames()) {
-            Assert.assertEquals(R.TESTDATA.get("brand_name").toLowerCase(), brandName.toLowerCase());
+            Assert.assertEquals(R.TESTDATA.get("brand_name").toLowerCase(), brandName.toLowerCase(), "Brand names don't match");
         }
     }
 }

@@ -17,6 +17,4 @@ public class CookiesPopUp extends BaseComponent {
     public void clickAcceptCookieButton() {
         acceptCookiesButton.click();
     }
-
-
 }

@@ -84,7 +84,7 @@ public class CheckoutPage extends PageWithProductCards {
         return shopPopUp;
     }
 
-    public boolean orderStatusCheck() {
+    public boolean isOrderStatusChecked() {
         return checkOrderCircle.isElementPresent();
     }
 }
