@@ -1,0 +1,14 @@
+# Default ignored files
+/shelf/
+/.idea/workspace.xml
+/vcs.xml
+/misc.xml
+/compiler.xml
+/encodings.xml
+/jarRepositories.xml/
+/target/
+.idea/
+target/
+.DS_Store
+reports
+src/main/resources/crypto.key
