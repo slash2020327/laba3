@@ -1,4 +1,4 @@
-package com.solvd.qa.gui.components;
+package com.solvd.qa.gui.desktop.components;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import org.openqa.selenium.SearchContext;
@@ -11,10 +11,10 @@ public class ProductCard extends BaseComponent {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductCard.class);
 
-    @FindBy(xpath = ".//span[@class='c-nav-item__icon ic-compare']")
+    @FindBy(xpath = ".//span[contains(@class, 'ic-compare')]")
     private ExtendedWebElement addToCompareButton;
 
-    @FindBy(xpath = ".//button[@class='btn c-cart ec-add-to-cart']")
+    @FindBy(xpath = ".//span[text()='В корзину']/ancestor::button")
     private ExtendedWebElement addToCartButton;
 
     @FindBy(xpath = ".//a[@class='c-text']")

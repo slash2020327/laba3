@@ -7,12 +7,26 @@ public class JavaScriptUtils {
 
     public static void hideSupportChat(WebDriver driver) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("return document.getElementsByTagName('jdiv')[0].style.visibility = 'hidden';");
+        //hideSupportChatText(driver);
+        js.executeScript("return document.querySelectorAll('jdiv').forEach(function(el) {\n" +
+                "   el.style.display = 'none';\n" +
+                "});");
+    }
+
+    public static void hideSupportChatText(WebDriver driver) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("return document.getElementsByClassName('text_a5f5 contentTransitionWrap_a108 _noAd_be37')[0].style.visibility = 'hidden';");
     }
 
     public static void showSupportChat(WebDriver driver) {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("return document.getElementsByTagName('jdiv')[0].style.visibility = 'visible';");
+        //JavascriptExecutor js = (JavascriptExecutor) driver;
+        //showSupportChatText(driver);
+        //js.executeScript("return document.getElementsByTagName('jdiv')[0].style.visibility = 'visible';");
+    }
+
+    public static void showSupportChatText(WebDriver driver) {
+        //JavascriptExecutor js = (JavascriptExecutor) driver;
+        //js.executeScript("return document.getElementsByClassName('text_bd3a _noAd_afd9 contentTransitionWrap_bda3')[0].style.visibility = 'visible';");
     }
 
     public static void hideHeader(WebDriver driver) {

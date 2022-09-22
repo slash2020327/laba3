@@ -1,6 +1,6 @@
-package com.solvd.qa.gui.pages;
+package com.solvd.qa.gui.desktop.pages;
 
-import com.solvd.qa.gui.components.ProductCard;
+import com.solvd.qa.gui.desktop.components.ProductCard;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -20,7 +20,6 @@ public abstract class PageWithProductCards extends BasePage {
     }
 
     public ProductCard getProductByName(String name) {
-        productCards = getProductCards();
         for (ProductCard card : productCards) {
             if (card.getProductName().equals(name)) {
                 return card;
@@ -30,7 +29,6 @@ public abstract class PageWithProductCards extends BasePage {
     }
 
     public ProductCard getProductByCode(int code) {
-        productCards = getProductCards();
         for (ProductCard card : productCards) {
             if (card.getProductCode().getText().contains(String.valueOf(code))) {
                 return card;

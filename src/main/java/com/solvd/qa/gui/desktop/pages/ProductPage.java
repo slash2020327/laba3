@@ -1,4 +1,4 @@
-package com.solvd.qa.gui.pages;
+package com.solvd.qa.gui.desktop.pages;
 
 import org.openqa.selenium.WebDriver;
 

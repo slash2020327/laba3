@@ -1,8 +1,8 @@
-package com.solvd.qa.gui.pages;
+package com.solvd.qa.gui.desktop.pages;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.PageOpeningStrategy;
-import com.solvd.qa.gui.components.CheckoutPopUp;
+import com.solvd.qa.gui.desktop.components.CheckoutPopUp;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 

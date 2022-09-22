@@ -1,10 +1,11 @@
-package com.solvd.qa.gui.components;
+package com.solvd.qa.gui.desktop.components;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,6 +28,7 @@ public class CartPopUp extends BaseComponent {
             goToCartButton.click();
         } catch (ElementNotInteractableException e) {
             LOGGER.warn("Element is not intractable, trying to click again");
+            waitUntil(ExpectedConditions.elementToBeClickable(goToCartButton.getElement()), 5);
             goToCartButton.click();
         }
     }
@@ -36,7 +38,7 @@ public class CartPopUp extends BaseComponent {
             backToShoppingButton.click();
         } catch (ElementNotInteractableException e) {
             LOGGER.warn("Element is not intractable, trying to click again with pause");
-            pause(1);
+            waitUntil(ExpectedConditions.elementToBeClickable(backToShoppingButton.getElement()), 5);
             backToShoppingButton.click();
         }
     }

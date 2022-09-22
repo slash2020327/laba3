@@ -1,7 +1,7 @@
 package com.solvd.qa;
 
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
-import com.solvd.qa.gui.pages.HomePage;
+import com.solvd.qa.gui.desktop.pages.HomePage;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 

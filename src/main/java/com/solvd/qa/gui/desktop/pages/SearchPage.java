@@ -1,4 +1,4 @@
-package com.solvd.qa.gui.pages;
+package com.solvd.qa.gui.desktop.pages;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.PageOpeningStrategy;

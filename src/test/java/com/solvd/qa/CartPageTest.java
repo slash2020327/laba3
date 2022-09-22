@@ -1,9 +1,9 @@
 package com.solvd.qa;
 
 import com.qaprosoft.carina.core.foundation.utils.R;
-import com.solvd.qa.gui.pages.CartPage;
-import com.solvd.qa.gui.pages.HomePage;
-import com.solvd.qa.gui.pages.SearchPage;
+import com.solvd.qa.gui.desktop.pages.CartPage;
+import com.solvd.qa.gui.desktop.pages.HomePage;
+import com.solvd.qa.gui.desktop.pages.SearchPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

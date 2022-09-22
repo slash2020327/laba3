@@ -1,9 +1,9 @@
-package com.solvd.qa.gui.pages;
+package com.solvd.qa.gui.desktop.pages;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
-import com.solvd.qa.gui.components.CartPopUp;
-import com.solvd.qa.gui.components.HeaderMenu;
+import com.solvd.qa.gui.desktop.components.CartPopUp;
+import com.solvd.qa.gui.desktop.components.HeaderMenu;
 import com.solvd.qa.utils.JavaScriptUtils;
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.WebDriver;
@@ -46,5 +46,9 @@ public abstract class BasePage extends AbstractPage {
 
     public CartPopUp getCartPopUp() {
         return cartPopUp;
+    }
+
+    public void scrollPage(int timesToScroll) {
+        JavaScriptUtils.scrollDown(getDriver(), timesToScroll);
     }
 }

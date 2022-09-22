@@ -1,8 +1,8 @@
-package com.solvd.qa.gui.pages;
+package com.solvd.qa.gui.desktop.pages;
 
 import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.solvd.qa.gui.components.ShopPopUp;
+import com.solvd.qa.gui.desktop.components.ShopPopUp;
 import com.solvd.qa.utils.JavaScriptUtils;
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.WebDriver;
