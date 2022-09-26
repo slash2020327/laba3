@@ -3,13 +3,14 @@ package com.solvd.qa.gui.desktop.pages;
 import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.solvd.qa.gui.common.pages.CommonCatalogPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-
-public class CatalogPage extends BasePage {
+@DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = CommonCatalogPage.class)
+public class CatalogPage extends CommonCatalogPage {
 
     @FindBy(xpath = "//main[@class='g-main']//li//a")
     private List<ExtendedWebElement> categories;
@@ -32,10 +33,12 @@ public class CatalogPage extends BasePage {
         return category.getAttribute("href");
     }
 
+    @Override
     public String getCategoryLinkByName(String name) {
         return getCategoryLink(getCategoryByName(name));
     }
 
+    @Override
     public void clickOnCategoryByName(String name) {
         getCategoryByName(name).click();
     }

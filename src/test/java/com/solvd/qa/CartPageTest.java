@@ -20,7 +20,7 @@ public class CartPageTest extends BaseTest {
             searchPage.getProductByCode(Integer.parseInt(productCode)).addToCart();
             searchPage.getCartPopUp().backToShopping();
         }
-        searchPage.getHeaderMenu().openCart();
+        searchPage.openCart();
         CartPage cartPage = new CartPage(getDriver());
         cartPage.assertPageOpened();
         Assert.assertEquals(cartPage.getSumOfPrices(), cartPage.getTotal());
