@@ -1,4 +1,4 @@
-package com.solvd.qa.gui.desktop.components;
+package com.solvd.qa.gui.android.components;
 
 import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
@@ -16,28 +16,25 @@ import java.util.Set;
 
 public class ProductSlider extends BaseComponent implements IMobileUtils {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProductSlider.class);
+
     @FindBy(xpath = ".//div[contains(@class, 'carousel-pagination')]//span[contains(@class, 'swiper-pagination-bullet')]")
     protected List<ExtendedWebElement> sliderPages;
 
     @FindBy(xpath = ".//div[@data-product_id]")
     protected List<ProductCard> productCards;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ProductSlider.class);
-
-    @FindBy(xpath = "./div[@class='swiper-button-next ic-chevron-down']")
-    private ExtendedWebElement sliderButton;
-
     public ProductSlider(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }
 
     public void moveSlider() {
-        tryToClickIntercepted(sliderButton);
+        swipeLeft(1);
     }
 
     public Set<String> getProductNamesFromSlider() {
         Set<String> productNames = new HashSet<String>();
-        int currentPageNumber = 0;
+        int currentPageNumber = 1;
         while (currentPageNumber < sliderPages.size()) {
             for (ProductCard productCard : productCards) {
                 if (!productCard.getProductName().isBlank()) {

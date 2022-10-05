@@ -1,4 +1,4 @@
-package com.solvd.qa.gui.desktop.pages;
+package com.solvd.qa.gui.common.pages;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
@@ -46,9 +46,5 @@ public abstract class BasePage extends AbstractPage {
 
     public CartPopUp getCartPopUp() {
         return cartPopUp;
-    }
-
-    public void scrollPage(int timesToScroll) {
-        JavaScriptUtils.scrollDown(getDriver(), timesToScroll);
     }
 }

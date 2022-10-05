@@ -1,5 +1,6 @@
 package com.solvd.qa.gui.desktop.pages;
 
+import com.solvd.qa.gui.common.pages.BasePage;
 import com.solvd.qa.gui.desktop.components.ProductCard;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -30,7 +31,7 @@ public abstract class PageWithProductCards extends BasePage {
 
     public ProductCard getProductByCode(int code) {
         for (ProductCard card : productCards) {
-            if (card.getProductCode().getText().contains(String.valueOf(code))) {
+            if (card.getProductCode().contains(String.valueOf(code))) {
                 return card;
             }
         }

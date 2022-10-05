@@ -5,6 +5,13 @@ import org.openqa.selenium.WebDriver;
 
 public class JavaScriptUtils {
 
+    public static void hidePreviews(WebDriver driver, int previewQuantity) {
+        for (int i = 0; i < previewQuantity; i++) {
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript(String.format("return document.getElementsByClassName('c-preview')[%s].style.visibility = 'hidden';", i));
+        }
+    }
+
     public static void hideSupportChat(WebDriver driver) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         //hideSupportChatText(driver);

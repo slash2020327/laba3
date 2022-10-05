@@ -1,15 +1,17 @@
 package com.solvd.qa.gui.desktop.pages;
 
+import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.PageOpeningStrategy;
-import com.qaprosoft.carina.core.gui.AbstractPage;
+import com.solvd.qa.gui.common.pages.CommonComparePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ComparePage extends AbstractPage {
+@DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = CommonComparePage.class)
+public class ComparePage extends CommonComparePage {
 
     @FindBy(xpath = "//div[@class='section-heading__title']")
     private ExtendedWebElement comparisonTitle;
@@ -35,6 +37,7 @@ public class ComparePage extends AbstractPage {
         setUiLoadedMarker(comparisonTitle);
     }
 
+    @Override
     public List<String> getBrandsRowBrandNames() {
         List<String> brandsRowBrandNames = new ArrayList<>();
         for (ExtendedWebElement extendedWebElement : brandsRow) {

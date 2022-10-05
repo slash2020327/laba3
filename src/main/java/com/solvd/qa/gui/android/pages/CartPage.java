@@ -1,38 +1,40 @@
-package com.solvd.qa.gui.desktop.pages;
+package com.solvd.qa.gui.android.pages;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.PageOpeningStrategy;
 import com.solvd.qa.gui.common.pages.CommonCartPage;
-import com.solvd.qa.gui.desktop.components.CheckoutPopUp;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-@DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = CommonCartPage.class)
+import static com.solvd.qa.constants.WaitTime.MAXIMAL_TIMEOUT;
+
+@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = CommonCartPage.class)
 public class CartPage extends CommonCartPage {
 
-    @FindBy(xpath = "//div[@class='section-product']//div[@class='c-cost']")
+    @FindBy(xpath = "//div[@class='c-part']/div[@class='c-cost']")
     private List<ExtendedWebElement> prices;
 
-    @FindBy(xpath = "//div[@class='shopping-order-total__value ec-total-value']")
+    @FindBy(xpath = "//td[@class='ec-total-value']")
     private ExtendedWebElement total;
 
-    @FindBy(xpath = "//div[@class='section-heading__title']")
-    private ExtendedWebElement cartTitle;
+    @FindBy(xpath = "//h1[text()='Моя корзина ']")
+    private ExtendedWebElement title;
 
-    @FindBy(xpath = "//div[@class='modal-popup modal-login-order']")
-    private CheckoutPopUp checkoutPopUp;
+    @FindBy(xpath = "//span[text()='Оформить заказ']/ancestor::button")
+    private ExtendedWebElement goToCheckoutButton;
 
-    @FindBy(xpath = "//a[@class='btn btn--block btn--lg']")
-    private ExtendedWebElement goToCheckOutButton;
+    @FindBy(xpath = "//span[text()='Продолжить как гость']/ancestor::button")
+    private ExtendedWebElement goToCheckoutAsGuestButton;
 
     public CartPage(WebDriver driver) {
         super(driver);
         setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
-        setUiLoadedMarker(cartTitle);
+        setUiLoadedMarker(title);
     }
 
     @Override
@@ -46,17 +48,13 @@ public class CartPage extends CommonCartPage {
 
     @Override
     public BigDecimal getTotal() {
-        return new BigDecimal(this.total.getText().replaceAll("\\s", ""));
-    }
-
-    public CheckoutPopUp getCheckoutPopUp() {
-        return checkoutPopUp;
+        return new BigDecimal(this.total.getText());
     }
 
     @Override
     public void goToCheckout() {
-        goToCheckOutButton.click();
-        getCheckoutPopUp().goToCheckoutAsGuest();
+        goToCheckoutButton.click();
+        waitUntil(ExpectedConditions.visibilityOf(goToCheckoutAsGuestButton.getElement()), MAXIMAL_TIMEOUT);
+        goToCheckoutAsGuestButton.click();
     }
-
 }
