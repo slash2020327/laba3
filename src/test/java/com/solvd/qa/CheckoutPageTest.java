@@ -1,36 +1,35 @@
 package com.solvd.qa;
 
 import com.qaprosoft.carina.core.foundation.utils.R;
-import com.solvd.qa.gui.pages.CartPage;
-import com.solvd.qa.gui.pages.CheckoutPage;
-import com.solvd.qa.gui.pages.HomePage;
-import com.solvd.qa.gui.pages.SearchPage;
-import com.solvd.qa.utils.JavaScriptUtils;
+import com.solvd.qa.gui.common.pages.CommonCartPage;
+import com.solvd.qa.gui.common.pages.CommonCheckoutPage;
+import com.solvd.qa.gui.common.pages.CommonHomePage;
+import com.solvd.qa.gui.common.pages.CommonSearchPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class CheckoutPageTest extends BaseTest {
 
     @Test
     public void verifyCheckoutProcess() {
-        HomePage homePage = new HomePage(getDriver());
+        CommonHomePage homePage = initPage(getDriver(), CommonHomePage.class);
         homePage.assertPageOpened();
-        homePage.getHeaderMenu().searchWith(R.TESTDATA.get("checkout_product"));
-        SearchPage searchPage = new SearchPage(getDriver());
+        homePage.searchProduct(R.TESTDATA.get("checkout_product"));
+        CommonSearchPage searchPage = initPage(getDriver(), CommonSearchPage.class);
         searchPage.assertPageOpened();
-        searchPage.getProductByCode(Integer.parseInt(R.TESTDATA.get("checkout_product_code"))).addToCart();
-        searchPage.getCartPopUp().goToCart();
-        CartPage cartPage = new CartPage(getDriver());
+        List<String> codes = Arrays.asList(R.TESTDATA.get("checkout_product_code"));
+        searchPage.addProductsToCardByProductCodes(codes);
+        searchPage.openCart();
+        CommonCartPage cartPage = initPage(getDriver(), CommonCartPage.class);
         cartPage.assertPageOpened();
         cartPage.goToCheckout();
-        cartPage.getCheckoutPopUp().goToCheckoutAsGuest();
-        CheckoutPage checkoutPage = new CheckoutPage(getDriver());
+        CommonCheckoutPage checkoutPage = initPage(getDriver(), CommonCheckoutPage.class);
         checkoutPage.assertPageOpened();
-        checkoutPage.typeName(R.TESTDATA.get("checkout_name")).typePhone(R.TESTDATA.get("phone_number"));
-        checkoutPage.typeEmail(R.TESTDATA.get("checkout_email"));
-        checkoutPage.choosePickUpFromShop().chooseShop();
-        checkoutPage.chooseWhenReceive().choosePaymentWithCashOrCard();
-        Assert.assertTrue(checkoutPage.isOrderStatusChecked(), "Order status checkbox is not checked");
+        checkoutPage.fillCheckoutForm();
+        Assert.assertTrue(checkoutPage.isOrderFormsComplete(), "Order form is not completed");
 
     }
 }
